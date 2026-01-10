@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница - Мой Блог{% endblock %}
+
+{% block content %}
+<h1>Последние записи</h1>
+
+<div class="row">
+    {% for post in posts %}
+    <div class="col-md-6">
+        <div class="card post-card">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">
+                    <small class="text-muted">
+                        {{ post.created_at|date:"d.m.Y" }} | 
+                        {{ post.author.username }} | 
+                        {{ post.category.name }}
+                    </small>
+                </p>
+                <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                <a href="{% url 'post_detail' post.id %}" class="btn btn-primary">
+                    Читать далее
+                </a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <p>Пока нет записей.</p>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Список категорий -->
+<div class="mt-5">
+    <h3>Категории</h3>
+    <div class="d-flex flex-wrap">
+        {% for category in categories %}
+        <a href="{% url 'category_posts' category.id %}" class="btn btn-outline-secondary m-1">
+            {{ category.name }}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
