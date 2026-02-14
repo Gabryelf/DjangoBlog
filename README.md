@@ -1,3 +1,9 @@
+
+<!-- Иконки технологий с градиентом -->
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=python,django,docker,ubuntu,git,github,linux,bash&theme=dark&perline=8" />
+</p>
+
 # DjangoBlog
 web + python3 + django
 
